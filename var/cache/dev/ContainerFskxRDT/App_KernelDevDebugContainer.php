@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use doctrine\Common\Annotations\Annotation;
 
 /**
  * This class has been auto-generated
@@ -1014,9 +1015,13 @@ class App_KernelDevDebugContainer extends Container
         $this->privates['annotations.reader'] = $instance = new \Doctrine\Common\Annotations\AnnotationReader();
 
         $a = new \Doctrine\Common\Annotations\AnnotationRegistry();
-        $a->registerLoader('class_exists');
+        $a->loadAnnotationClass('class_exists');
 
-        $instance->addGlobalIgnoredName('required', $a);
+        // // $a->registerLoader('class_exists');
+    
+
+        // $instance->addGlobalIgnoredName('required', $a);
+        $instance->addGlobalIgnoredName('required');
 
         return $instance;
     }
